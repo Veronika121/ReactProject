@@ -9,9 +9,9 @@ function SearchSound() {
   const [err, setErr] = useContext(SoundsContext).errorValues;
   const [isLoading, setIsLoading] = useContext(SoundsContext).loadingValues;
 
-  const getSound = (soundName) => {
+  const getSound = () => {
     fetch(
-      `https://freesound.org/apiv2/search/text/?query=${soundName}&fields=id,name,tags,previews,description,created,license,username&token=${process.env.REACT_APP_FREESOUND_API_KEY}`,
+      `https://freesound.org/apiv2/search/text/?query=${searchWord}&fields=id,name,tags,previews,description,created,license,username&token=${process.env.REACT_APP_FREESOUND_API_KEY}`,
     )
       .then((response) => {
         if (response.ok) {
@@ -44,7 +44,7 @@ function SearchSound() {
         onClick={() => {
           setIsLoading(true);
           setSearchWord(soundRef.current.value);
-          getSound(soundRef.current.value);
+          getSound();
         }}
       >
         Search
