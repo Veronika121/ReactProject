@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { SoundsContext } from './SoundsContext';
+import Tags from './Tags';
 
 const SoundPage = () => {
   const { soundId } = useParams();
@@ -14,15 +15,16 @@ const SoundPage = () => {
       `https://freesound.org/apiv2/sounds/${soundId}/?token=${process.env.REACT_APP_FREESOUND_API_KEY}`,
     )
       .then((response) => {
+        setIsLoading(false);
         if (response.ok) {
           setErr('');
+
           return response.json();
         } else throw new Error(response.statusText);
       })
       .then((data) => {
         if (data) {
           setSoundInfo(data);
-          setIsLoading(false);
         } else throw new Error('No extra information');
       })
       .catch((error) => {
@@ -81,15 +83,7 @@ const SoundPage = () => {
             </p>
           </div>
           <div className="right">
-            {soundInfo.tags.length > 0 &&
-              soundInfo.tags.map((tag) => {
-                return (
-                  <span key={tag}>
-                    <span className="tag">{tag}</span>
-                    &thinsp;
-                  </span>
-                );
-              })}
+            <Tags tagsArr={soundInfo.tags} />
           </div>
         </div>
         <div className="goback">

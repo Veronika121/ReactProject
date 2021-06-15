@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Tags from './Tags';
 const Sound = ({ soundData }) => {
   return (
     <div className="sound">
@@ -11,21 +12,10 @@ const Sound = ({ soundData }) => {
         </audio>
       </div>
       <div className="right">
-        <div>
-          {soundData.tags.length > 0 &&
-            soundData.tags.map((tag) => {
-              return (
-                <span key={tag}>
-                  <span className="tag">{tag}</span>
-                  &thinsp;
-                </span>
-              );
-            })}
-        </div>
+        <Tags tagsArr={soundData.tags} />
+
         <Link to={`/${soundData.id}`}>
-          <p style={{ marginBottom: '10px' }}>
-            <button>more info...</button>
-          </p>
+          <button>more info...</button>
         </Link>
       </div>
     </div>

@@ -51,12 +51,20 @@ button:hover {
 .sound .right {
   width: 40vw;
 }
+.sound .right button {
+  margin-top: 1em;
+}
+.tags {
+  text-decoration: none;
+  color: #805a2a;
+}
 .tag {
   background-color: rgb(220, 245, 243);
   padding: 4px;
   margin: 2px;
   line-height: 2em;
   border-radius: 5px;
+  text-decoration: none;
 }
 
 .search {
