@@ -1,11 +1,15 @@
-import { useState, useRef, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import { SoundsContext } from './SoundsContext';
-function SearchSound() {
-  const [soundsData, setSoundsData] = useContext(SoundsContext);
-  let soundRef = useRef();
-  let [err, setErr] = useState('');
 
-  function getSound(soundName) {
+function SearchSound() {
+  const [soundsData, setSoundsData] = useContext(SoundsContext).soundsValues;
+  const [searchWord, setSearchWord] =
+    useContext(SoundsContext).searchWordValues;
+  const soundRef = useRef();
+  const [err, setErr] = useContext(SoundsContext).errorValues;
+  const [isLoading, setIsLoading] = useContext(SoundsContext).loadingValues;
+
+  const getSound = (soundName) => {
     fetch(
       `https://freesound.org/apiv2/search/text/?query=${soundName}&fields=id,name,tags,previews,description,created,license,username&token=${process.env.REACT_APP_FREESOUND_API_KEY}`,
     )
@@ -16,23 +20,30 @@ function SearchSound() {
         } else throw new Error(response.statusText);
       })
       .then((data) => {
-        console.log('data.results: ', data.results);
         if (data.results.length > 0) {
           setSoundsData(data.results);
+          setIsLoading(false);
         } else throw new Error('This sound is not found.');
       })
       .catch((error) => {
-        setErr(() => error.message);
+        setErr(error.message);
       });
-  }
+  };
 
   return (
     <div className="search">
-      <h2>Find the sound</h2>
-      <h3>{err}</h3>
-      <input ref={soundRef} type="text" placeholder="Search Sound" />
+      <h1>Find the sound</h1>
+      {err && <h3>{err}</h3>}
+      <input
+        ref={soundRef}
+        type="text"
+        placeholder="Search Sound"
+        defaultValue={searchWord ? searchWord : undefined}
+      />
       <button
         onClick={() => {
+          setIsLoading(true);
+          setSearchWord(soundRef.current.value);
           getSound(soundRef.current.value);
         }}
       >

@@ -1,40 +1,127 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+body {
+  background-color: #daf5a7;
+}
 
 .App {
   text-align: center;
+}
+h1 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-shadow: 1px 1px 2px rgb(148, 148, 148), 0 0 1em #8b8b8b;
+  font-size: 2em;
 }
 .sounds-list {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
-.sound-wrap {
-}
+
 .sound {
-  padding-top: 3em;
-  padding-bottom: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
   border-bottom: 1px solid #b6b6b6;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-radius: 25px;
+  transition: background-color 0.5s, box-shadow 0.5s;
 }
 .sound:hover {
-  background-color: #fafafa;
+  background-color: #f8e95e;
+  border-radius: 25px;
+  box-shadow: 0 0 5px #a7a7a780;
 }
-.left {
+p.description {
+  font-weight: bold;
+}
+button:hover {
+  cursor: pointer;
+}
+.sound button {
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.sound .left {
   width: 40vw;
 }
-.right {
+.sound .right {
   width: 40vw;
 }
 .tag {
-  background-color: beige;
+  background-color: rgb(220, 245, 243);
   padding: 4px;
   margin: 2px;
   line-height: 2em;
+  border-radius: 5px;
 }
+
 .search {
-  margin-bottom: 3em;
+  margin-bottom: 2em;
+}
+.search input {
+  font-size: 1.5em;
+  border-radius: 25px;
+  border: 1px solid gray;
+  outline: 0;
+  padding-left: 0.5em;
+}
+.search button {
+  margin-left: 0.5em;
+  font-size: 1.5em;
+  border-radius: 25px;
+  border: 1px solid #818181;
+}
+.search button:hover {
+  background-color: rgb(194, 194, 194);
+}
+.sound-page {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.info {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  text-align: left;
+}
+.info .left {
+  width: 30vw;
+  background-color: #f8e95e;
+  border-radius: 25px;
+  margin-top: 2em;
+}
+.info .middle {
+  width: 20vw;
+}
+.info .right {
+  width: 40vw;
+  text-align: center;
+}
+.info div {
+  padding: 1.5em;
+}
+.info span {
+  color: rgb(128, 90, 42);
+}
+.goback {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  background-image: url(./spring-grass.png);
+  background-repeat: repeat-x;
+  background-position: bottom;
+  height: 200px;
+  z-index: -1;
+}
+.goback button {
+  margin-top: 2em;
+  font-size: 2em;
+  border-radius: 25px;
 }

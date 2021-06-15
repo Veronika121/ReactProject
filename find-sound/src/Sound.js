@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-function Sound({ soundData }) {
-  console.log('tag', soundData.tags);
+const Sound = ({ soundData }) => {
   return (
     <div className="sound">
       <div className="left">
@@ -15,24 +14,21 @@ function Sound({ soundData }) {
         <div>
           {soundData.tags.length > 0 &&
             soundData.tags.map((tag) => {
-              console.log(tag);
               return (
-                <>
-                  <span className="tag" key={tag}>
-                    {tag}
-                  </span>
+                <span key={tag}>
+                  <span className="tag">{tag}</span>
                   &thinsp;
-                </>
+                </span>
               );
             })}
         </div>
         <Link to={`/${soundData.id}`}>
           <p style={{ marginBottom: '10px' }}>
-            <b>more info...</b>
+            <button>more info...</button>
           </p>
         </Link>
       </div>
     </div>
   );
-}
+};
 export default Sound;
